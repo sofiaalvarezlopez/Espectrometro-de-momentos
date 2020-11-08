@@ -1,7 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d.axes3d import *
-from matplotlib import cm
 import datetime
 import os
 # e es la carga elemental, m_p es la masa del proton
@@ -15,9 +13,12 @@ magnitud_B = float(input('Escriba la magnitud del campo magnético:\n'))
 if opcion == 1:
     max_vel = float(input('Escriba la velocidad máxima que una partícula puede tener:\n'))
     theta0 = float(input('Escriba el ángulo de incidencia de la partícula (theta0) en grados:\nNOTA:theta0 debe ser mayor a 0\n'))
-else:
+elif opcion == 2:
     max_vel = float(input('Escriba la velocidad de las partículas:\n'))
     theta0 = float(input('Escriba el ángulo de incidencia MÁXIMO de una partícula (theta0) en grados:\nNOTA:theta0 debe ser mayor a 0\n'))
+else:
+    print('Opción incorrecta. Finalizando ejecucion del programa.')
+    exit(-1)
 
 def fuerza_y_aceleracion(q, v, B, m):
     # Fuerza magnetica
@@ -89,9 +90,9 @@ for p in range(num_particulas):
     v_magnitud = max_vel
     theta_0 = theta0
     if opcion == 1:
-        v_magnitud *= np.random.rand()
+        v_magnitud *= np.random.rand() + 0.001
     else:
-        theta_0 *= np.random.rand()
+        theta_0 *= np.random.rand() + 1
     archivo_trayectoria_theta0pos = open(carpeta_trayectorias + '/' + str(p+1) + '_theta0+.dat', 'w')
     archivo_trayectoria_theta0neg = open(carpeta_trayectorias + '/' + str(p+1) + '_theta0-.dat', 'w')
     v_inicial = np.array([[v_magnitud*np.sin(np.deg2rad(theta_0)), v_magnitud*np.cos(np.deg2rad(theta_0)), 0.0]])
@@ -111,14 +112,16 @@ for p in range(num_particulas):
         titulo = r'Trayectoria de dos partículas con ángulo de incidencia $\theta_0$=$\pm${:.3f} bajo B={:.1f} T'
         plt.title(titulo.format(theta_0, magnitud_B))
     plt.xlabel('Posición en x [m]')
-    plt.ylabel('Posición en y [m]')
+    plt.ylabel('Posición en y [m]', loc='top')
     ax = plt.gca()
     ax.spines['right'].set_visible(False)
     ax.spines['top'].set_visible(False)
+    ax.spines['left'].set_position('zero')
+    ax.spines['bottom'].set_position('zero')
     plt.plot(trayectoria[:,0], trayectoria[:,1], label=r'Partícula con ángulo de incidencia $\theta_0$={:.1f}'.format(theta_0))
     plt.plot(trayectoria_m[:,0], trayectoria_m[:,1], label=r'Partícula con ángulo de incidencia $\theta_0$={:.1f}'.format(-theta_0))
-    plt.legend(bbox_to_anchor=(1.02, 1), loc='upper left', borderaxespad=0.)
-    plt.savefig(carpeta_graficas_trayectorias + '/Trayectoria_particula' + str(p+1) +'.png')
+    plt.legend(bbox_to_anchor=(0., -0.1, 1., .102), loc='lower left', ncol=2, mode="expand", borderaxespad=0.)
+    plt.savefig(carpeta_graficas_trayectorias + '/Trayectoria_particula' + str(p+1) +'.png', bbox_inches='tight')
     plt.close()
  
 

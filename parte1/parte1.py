@@ -1,7 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d.axes3d import *
-from matplotlib import cm
 import datetime
 import os
 # e es la carga elemental, m_p es la masa del proton
@@ -85,11 +83,13 @@ plt.title('Trayectorias de {} partículas bajo un campo mágnetico uniforme B =
 ax = plt.gca()
 ax.spines['right'].set_visible(False)
 ax.spines['top'].set_visible(False)
+ax.spines['left'].set_position('zero')
+ax.spines['bottom'].set_position('zero')
 formato = '{},{},{}\n'
 
 for p in range(num_particulas):
     archivo_trayectoria = open(carpeta_trayectorias + '/' + str(p+1) + '.dat', 'w')
-    v_inicial = np.array([[0.0, max_vel*np.random.rand(), 0.0]])
+    v_inicial = np.array([[0.0, max_vel*np.random.rand() + 0.001, 0.0]])
     p_inicial = momento_inicial(v_inicial, m_p)
     trayectoria, velocidad, aceleracion = evolucionar_verlet(e, m_p, B, delta_t, posicion_inicial, v_inicial, a_inicial, archivo_trayectoria)
     archivo_trayectoria.close()
@@ -99,5 +99,4 @@ for p in range(num_particulas):
     plt.legend(bbox_to_anchor=(1.02, 1), loc='upper left', borderaxespad=0.)
 
 archivo_momentos.close()
-plt.savefig(carpeta_trayectorias + '/Trayectorias.png')
-plt.show()
+plt.savefig(carpeta + '/Trayectorias.png', bbox_inches='tight')
