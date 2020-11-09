@@ -127,7 +127,7 @@
       </p>
       <p>Trayectoria para dos partículas con +/- theta0 grande</p>
       <p align="center">
-       <img src="imagenes/Trayectoria_particula1_theta_elevado.png" width="50%" height="50%" />
+       <img src="imagenes/Trayectoria_particula7_theta_elevado.png" width="50%" height="50%" />
       </p>
     <li>Archivo <code>x_finales.dat</code>: Almacena las posiciones finales, en x, de cada una de las partículas con sus diferentes ángulos de incidencia. <br/> El formato del archivo es: <code>id_particula,theta_0,x_final_+theta0,x_final_-theta0</code>, donde <code>x_final_+theta0</code> y <code>x_final_-theta0</code>  corresponden a la posición final en x de la partícula con ángulo de incidencia positivo y negativo, respectivamente.</li>
     <li>Imagen <code>error_xfinal_?.png</code>: Dependiendo de si se escogió la opción 1 o la opción 2, el <code>?</code> se reemplaza por velocidad o theta0 respectivamente. Esta gráfica busca analizar el error en la posición final, medido como np.abs(x_final_theta0+ - x_final_theta0-) en función de la variable velocidad o theta0 según sea el caso. A continuación, podemos ver dos gráficas ejemplo. 
