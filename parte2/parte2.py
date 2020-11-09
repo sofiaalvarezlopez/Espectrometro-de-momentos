@@ -1,7 +1,8 @@
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 import datetime
 import os
+
 # e es la carga elemental, m_p es la masa del proton
 #from scipy.constants import e, m_p
 print('-----Simulación de trayectorias de partículas, con ángulo de incidencia theta0, bajo un campo magnético uniforme-----')
@@ -59,7 +60,14 @@ def evolucionar_verlet(e, m_p, B, delta_t, posicion_inicial, v_inicial, acelerac
         y = pos[:,1]
     return trayectoria, velocidad, aceleracion
 
+def error_xfinal(x_theta, x_menos_theta):
+    return abs(x_menos_theta - x_theta)
+
 path = './datos/'
+try:
+    os.mkdir('datos')
+except:
+    pass
 fecha = str(datetime.datetime.now())
 carpeta = ''
 try:
@@ -86,28 +94,35 @@ delta_t = 0.0001
 e = 5
 m_p = 2
 formato = '{},{},{},{}\n'
+errores = []
+#Representa el valor que va a variar: theta_0 o velocidad
+variable = []
 for p in range(num_particulas):
     v_magnitud = max_vel
     theta_0 = theta0
     if opcion == 1:
-        v_magnitud *= np.random.rand() + 0.001
+        v_magnitud = v_magnitud*np.random.rand() + 0.001
     else:
-        theta_0 *= np.random.rand() + 1
+        theta_0 *= np.random.rand()
     archivo_trayectoria_theta0pos = open(carpeta_trayectorias + '/' + str(p+1) + '_theta0+.dat', 'w')
     archivo_trayectoria_theta0neg = open(carpeta_trayectorias + '/' + str(p+1) + '_theta0-.dat', 'w')
     v_inicial = np.array([[v_magnitud*np.sin(np.deg2rad(theta_0)), v_magnitud*np.cos(np.deg2rad(theta_0)), 0.0]])
     v_inicial_m = np.array([[-v_magnitud*np.sin(np.deg2rad(theta_0)), v_magnitud*np.cos(np.deg2rad(theta_0)), 0.0]])
     trayectoria, velocidad, aceleracion = evolucionar_verlet(e, m_p, B, delta_t, posicion_inicial, v_inicial, a_inicial, archivo_trayectoria_theta0pos)
     trayectoria_m, velocidad_m, aceleracion_m = evolucionar_verlet(e, m_p, B, delta_t, posicion_inicial, v_inicial_m, a_inicial, archivo_trayectoria_theta0neg)
+    error = error_xfinal(trayectoria[-1, 0], trayectoria_m[-1, 0])
+    errores.append(error)
     archivo_trayectoria_theta0pos.close()
     archivo_trayectoria_theta0neg.close()
     titulo = ''
     plt.figure(figsize=(15,7.5))
     if opcion == 1:
+        variable.append(v_magnitud)
         archivo_xfinal.write(formato.format(p+1, v_magnitud, trayectoria[-1,0], trayectoria_m[-1,0]))
         titulo = 'Trayectoria de dos partículas con velocidad inicial v={:.3f} m/s bajo B={:.1f} T'
         plt.title(titulo.format(v_magnitud, magnitud_B))
     else:
+        variable.append(theta_0)
         archivo_xfinal.write(formato.format(p+1, theta_0, trayectoria[-1,0], trayectoria_m[-1,0]))
         titulo = r'Trayectoria de dos partículas con ángulo de incidencia $\theta_0$=$\pm${:.3f} bajo B={:.1f} T'
         plt.title(titulo.format(theta_0, magnitud_B))
@@ -124,7 +139,24 @@ for p in range(num_particulas):
     plt.savefig(carpeta_graficas_trayectorias + '/Trayectoria_particula' + str(p+1) +'.png', bbox_inches='tight')
     plt.close()
  
+plt.figure()
+ax = plt.gca()
+plt.plot(variable, errores, '.')
+plt.ylabel('Error en la posición final de las partículas')
+ax.spines['right'].set_visible(False)
+ax.spines['top'].set_visible(False)
+ax.spines['left'].set_position('zero')
+ax.spines['bottom'].set_position('zero')
+if opcion == 1:
+    plt.xlabel('Velocidad de la partícula')
+    plt.title(r'Error en la posición final de las partículas en función de su velocidad con $\theta_0=${:.3f}'.format(theta0))
+    plt.savefig(carpeta + '/Error_xfinal_velocidad' +'.png', bbox_inches='tight')
+
+else:
+    plt.xlabel(r'Ángulo de incidencia de la partícula $\theta_0$')
+    plt.title(r'Error en la posición final de las partículas con $|v|$={} en función del ángulo de incidencia $\theta_0$'.format(max_vel))
+    plt.savefig(carpeta + '/Error_xfinal_theta0' +'.png', bbox_inches='tight')
+
 
 archivo_xfinal.close()
-
 
