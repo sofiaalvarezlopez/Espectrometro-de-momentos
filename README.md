@@ -12,12 +12,12 @@
       Correr el proyecto
     </a>
     <span> | </span>
-    <a href=#parte-1>
-      Acerca de la parte 1
+    <a href=#correr-parte-1>
+      Correr la parte 1
     </a>
     <span> | </span>
-    <a href=#parte-2>
-      Acerca de la parte 2
+     <a href=#correr-parte-2>
+      Correr la parte 2
     </a>
   </h4>
 </div>
@@ -65,7 +65,7 @@
   <i>NOTA: Si es la primera vez que corre el programa, seleccione la opción 1.</i><br/>
   Otra forma de instalar las dependencias es corriendo el comando <code>pip install -r requirements.txt</code>
 </li>
-<li><b>Correr la parte 1 del proyecto: </b>
+<li><h3 name="correr-parte-1">Correr la parte 1 del proyecto: </h3>
   Si desea correr la primera parte del proyecto, seleccione la segunda opción del archivo <code>./run.sh</code>. Aquí, se le solicitarán algunos datos con el fin de correr la simulación. 
   <ol>
     <li> Primero, deberá ingresar el número de partículas que desea simular. </li>
@@ -90,12 +90,13 @@
     </li>
     <li>Imagen <code>momentos.png</code>: Muestra el momento final de una partícula en función de su momento inicial y realiza un ajuste lineal entre ambas cantidades. Una imagen ejemplo generada con 100 partículas, con un paso temporal de 1 microsegundo, se muestra a continuación,
       <p align="center">
-       <img src="imagenes/momentos.png" />
+       <img src="imagenes/momentos.png" width="50%" height="50%" />
       </p>
     </li>
     <li>Imagen <code>error_momento.png</code>: Muestra el error en el momento (calculado como |p_final - p_inicial|) en función del momento inicial de las partículas. Entre más grande sea el paso temporal y/o la velocidad de las partículas, se espera un mayor error. Una imagen ejemplo generada con 100 partículas, con un paso temporal de 1 microsegundo, se muestra a continuación,
       <p align="center">
-       <img src="imagenes/error_momento.png" />
+       <img src="imagenes/error_momento.png" width="50%" height="50%" />
       </p>
 </li>
+<li><h3 name="correr-parte-2">Correr la parte 2 del proyecto: </h3>
 </ol>
