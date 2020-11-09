@@ -107,7 +107,8 @@
         <p align="center">
        <img src="imagenes/error_momento_tiempo.png" width="50%" height="50%" />
       </p>
-  Esta permite visualizar el error en el momento según el paso temporal utilizado en la simulación. Esta gráfica se almacena en la ruta <code>datos/error_momento_tiempo.png</code>
+  Esta permite visualizar el error en el momento según el paso temporal utilizado en la simulación. Esta gráfica se almacena en la ruta <code>datos/error_momento_tiempo.png</code>. <br/>
+  <b>NOTA:</b> Para correr esta opción, es necesario haber corrido, por lo menos, dos veces la simulación de la parte 1 con diferentes pasos temporales. 
   </li>
 <li><h3 name="correr-parte-2">Correr la parte 2 del proyecto: </h3>
   Si desea correr la segunda parte del proyecto, seleccione la tercera opción del archivo <code>./run.sh</code>. Aquí, se le solicitarán algunos datos con el fin de correr la simulación. 
