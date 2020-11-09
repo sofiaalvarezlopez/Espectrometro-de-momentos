@@ -57,7 +57,9 @@
     <li>Instalar las dependencias y librerías del programa.</li>
     <li>Correr la parte 1 del proyecto.</li>
     <li>Correr la parte 2 del proyecto.</li>
+    <li>Correr la grafica para el error en el momento en funcion del intervalo de la parte 1</li>
   </ol>
+  <b>NOTA:</b>Para correr la última opción, debe haberse ejecutado al menos una vez la parte 1 del proyecto.
   Como se ve en la imagen mostrada a continuación,
    <p align="center">
   <img src="imagenes/opciones.png" width="50%" height="50%" />
@@ -101,11 +103,11 @@
 </li>
   </ul>
   Asimismo, dentro de la carpeta <code>datos</code>, se genera un archivo <code>errores.dat</code>, con el formato <code>delta_tiempo,error_maximo,error_medio</code>, donde <code>delta_tiempo</code> corresponde al paso temporal usado en una simulación y <code>error_maximo</code> y <code>error_medio</code> el error más alto y el error promedio en el momento p, calculado como |p_final - p_inicial|, de cada simulación. Cada vez que se corre una simulación, se agregan estos datos a dicho archivo. <br/>
-  Con los datos de este archivo, corriendo el script <code>grafica_errores.py</code> se genera la gráfica mostrada a continuación,
+  Con los datos de este archivo, corriendo el script <code>grafica_errores.py</code>, o ejecutando la opción 4 del script <code>./run.sh</code>, se genera la gráfica mostrada a continuación,
         <p align="center">
        <img src="imagenes/error_momento_tiempo.png" width="50%" height="50%" />
       </p>
-  La cual permite visualizar el error en el momento según el paso temporal utilizado en la simulación.
+  Esta permite visualizar el error en el momento según el paso temporal utilizado en la simulación. Esta gráfica se almacena en la ruta <code>datos/error_momento_tiempo.png</code>
   </li>
 <li><h3 name="correr-parte-2">Correr la parte 2 del proyecto: </h3>
   Si desea correr la segunda parte del proyecto, seleccione la tercera opción del archivo <code>./run.sh</code>. Aquí, se le solicitarán algunos datos con el fin de correr la simulación. 
