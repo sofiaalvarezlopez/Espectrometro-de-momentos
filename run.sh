@@ -7,6 +7,7 @@ echo Escriba el numero de la opcion que desea correr [e.g. 1]
 echo 1. Instalar las dependencias del programa
 echo 2. Correr la simulacion para particulas que inciden perpendicular al campo.
 echo 3. Correr la simulacion para particulas que inciden a un angulo theta0.
+echo 4. Correr la grafica para el error en el momento en funcion del intervalo de la parte 1
 
 read line;
     if [ "$line" -eq 1 ];
@@ -15,6 +16,8 @@ read line;
         then cd parte1 && python3 ./parte1.py;
     elif [ "$line" -eq 3 ]; 
         then cd parte2 && python3 ./parte2.py;
+    elif [ "$line" -eq 4 ];
+        then cd parte1 && python3 ./grafica_errores.py;
     else
         echo Opcion no disponible;
     fi
