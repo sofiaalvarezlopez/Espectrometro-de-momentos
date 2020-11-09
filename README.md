@@ -60,7 +60,7 @@
   </ol>
   Como se ve en la imagen mostrada a continuación,
    <p align="center">
-  <img src="imagenes/opciones.png" />
+  <img src="imagenes/opciones.png" width="50%" height="50%" />
   </p>
   <i>NOTA: Si es la primera vez que corre el programa, seleccione la opción 1.</i><br/>
   Otra forma de instalar las dependencias es corriendo el comando <code>pip install -r requirements.txt</code>
