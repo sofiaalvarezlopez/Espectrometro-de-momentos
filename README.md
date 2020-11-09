@@ -57,7 +57,7 @@
     <li>Instalar las dependencias y librerías del programa.</li>
     <li>Correr la parte 1 del proyecto.</li>
     <li>Correr la parte 2 del proyecto.</li>
-    <li>Correr la grafica para el error en el momento en funcion del intervalo de la parte 1</li>
+    <li>Correr la gráfica para el error en el momento en función del intervalo de la parte 1</li>
   </ol>
   <b>NOTA:</b>Para correr la última opción, debe haberse ejecutado al menos una vez la parte 1 del proyecto.
   Como se ve en la imagen mostrada a continuación,
