@@ -62,7 +62,7 @@
   <b>NOTA:</b>Para correr la última opción, debe haberse ejecutado al menos una vez la parte 1 del proyecto.
   Como se ve en la imagen mostrada a continuación,
    <p align="center">
-  <img src="imagenes/opciones.png" width="50%" height="50%" />
+  <img src="imagenes/opciones_script.png" width="50%" height="50%" />
   </p>
   <i>NOTA: Si es la primera vez que corre el programa, seleccione la opción 1.</i><br/>
   Otra forma de instalar las dependencias es corriendo el comando <code>pip install -r requirements.txt</code>
